@@ -107,9 +107,9 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // canxium testnet [cerium]
   [30103]: {
-    router: '0xAC5DcA1235d685E473B428ff52E2842444384abd',
-    weth: '0x0B1ab52d408B7C61d52dC69942609Eca1BAd1053',
-    creationBlock: 375015,
+    router: '0x3b5eD885e81Fd46281ED8b6E6691c32a8FA37018',
+    weth: '0x620969CB5486D4E9E3884E5106EfB4f7d31a76A8', // wrap native coin cau on canxium
+    creationBlock: 381131,
   },
 }
 
