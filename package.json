@@ -65,5 +65,8 @@
   "bugs": {
     "url": "https://github.com/Uniswap/universal-router-sdk/issues"
   },
-  "homepage": "https://github.com/Uniswap/universal-router-sdk#readme"
+  "homepage": "https://github.com/Uniswap/universal-router-sdk#readme",
+  "resolutions": {
+    "@uniswap/sdk-core": "git+https://github.com/canxium/swap-sdk-core.git#v4.0.6"
+  }
 }

@@ -2203,7 +2203,18 @@
     "@uniswap/v2-sdk" "^3.2.0"
     "@uniswap/v3-sdk" "^3.10.0"
 
-"@uniswap/sdk-core@^4", "@uniswap/sdk-core@^4.0.0", "@uniswap/sdk-core@^4.0.2":
+"@uniswap/sdk-core@^4", "@uniswap/sdk-core@^4.0.2", "@uniswap/sdk-core@git+https://github.com/canxium/swap-sdk-core.git#v4.0.6":
+  version "4.0.6"
+  resolved "git+https://github.com/canxium/swap-sdk-core.git#f8fc71e3ccc185c645b7a157db429d9b17a65cb9"
+  dependencies:
+    "@ethersproject/address" "^5.0.2"
+    big.js "^5.2.2"
+    decimal.js-light "^2.5.0"
+    jsbi "^3.1.4"
+    tiny-invariant "^1.1.0"
+    toformat "^2.0.0"
+
+"@uniswap/sdk-core@^4.0.0":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@uniswap/sdk-core/-/sdk-core-4.0.2.tgz#2eca2b5bf00bad74519aef918465c19218285b4b"
   integrity sha512-rR5xobsAAP4yMYC7C+0+duVx0pFoDn2lV9kTWpoKgH1WJuw7hD1uDEvuevU2dL89TuixVgGvnYd0QxmrMtsIlg==
