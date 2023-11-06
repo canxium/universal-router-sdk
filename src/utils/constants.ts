@@ -101,9 +101,9 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // canxium mainnet [temp]
   [3003]: {
-    router: '0xAC5DcA1235d685E473B428ff52E2842444384abd',
-    weth: '0x0B1ab52d408B7C61d52dC69942609Eca1BAd1053',
-    creationBlock: 375015,
+    router: '0x62E3E7b23Ed9b765d69D5602Ed3d9BE8E6C96164',
+    weth: '0xA3A18968b3a5f5bd0872C58B1bC59481E4496d67',
+    creationBlock: 1891743,
   },
   // canxium testnet [cerium]
   [30103]: {

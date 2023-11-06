@@ -2203,9 +2203,9 @@
     "@uniswap/v2-sdk" "^3.2.0"
     "@uniswap/v3-sdk" "^3.10.0"
 
-"@uniswap/sdk-core@^4", "@uniswap/sdk-core@^4.0.2", "@uniswap/sdk-core@git+https://github.com/canxium/swap-sdk-core.git#v4.0.6":
+"@uniswap/sdk-core@^4", "@uniswap/sdk-core@^4.0.2", "@uniswap/sdk-core@git+https://github.com/canxium/swap-sdk-core.git#v4.0.6-c1":
   version "4.0.6"
-  resolved "git+https://github.com/canxium/swap-sdk-core.git#f8fc71e3ccc185c645b7a157db429d9b17a65cb9"
+  resolved "git+https://github.com/canxium/swap-sdk-core.git#0a588327202a0edb9eeea6cc7426a15d87693a0d"
   dependencies:
     "@ethersproject/address" "^5.0.2"
     big.js "^5.2.2"
