@@ -97,5 +97,6 @@
   },
   "installConfig": {
     "hoistingLimits": "workspaces"
-  }
+  },
+  "version": "2.2.4"
 }
