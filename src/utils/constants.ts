@@ -29,9 +29,9 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // polygon
   [137]: {
-    router: '0x643770E279d5D0733F21d6DC03A8efbABf3255B4',
+    router: '0xec7BE89e9d109e7e3Fec59c222CF297125FEFda2',
     weth: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
-    creationBlock: 46866777,
+    creationBlock: 52210153,
   },
   //polygon mumbai
   [80001]: {
@@ -41,9 +41,9 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   //optimism
   [10]: {
-    router: '0xeC8B0F7Ffe3ae75d7FfAb09429e3675bb63503e4',
+    router: '0xCb1355ff08Ab38bBCE60111F1bb2B784bE25D7e8',
     weth: '0x4200000000000000000000000000000000000006',
-    creationBlock: 108825869,
+    creationBlock: 114702266,
   },
   // optimism goerli
   [420]: {
@@ -53,9 +53,9 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // arbitrum
   [42161]: {
-    router: '0xeC8B0F7Ffe3ae75d7FfAb09429e3675bb63503e4',
+    router: '0x5E325eDA8064b456f4781070C0738d849c824258',
     weth: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
-    creationBlock: 125861718,
+    creationBlock: 169472836,
   },
   // arbitrum goerli
   [421613]: {
@@ -65,9 +65,9 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // celo
   [42220]: {
-    router: '0x88a3ED7F21A3fCF6adb86b6F878C5B7a02D20e9b',
+    router: '0x643770e279d5d0733f21d6dc03a8efbabf3255b4',
     weth: WETH_NOT_SUPPORTED_ON_CHAIN,
-    creationBlock: 21116361,
+    creationBlock: 21407637,
   },
   // celo alfajores
   [44787]: {
@@ -77,15 +77,15 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // binance smart chain
   [56]: {
-    router: '0xeC8B0F7Ffe3ae75d7FfAb09429e3675bb63503e4',
+    router: '0x4Dae2f939ACf50408e13d58534Ff8c2776d45265',
     weth: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
-    creationBlock: 31254967,
+    creationBlock: 35160263,
   },
   // avalanche
   [43114]: {
-    router: '0x82635AF6146972cD6601161c4472ffe97237D292',
+    router: '0x4Dae2f939ACf50408e13d58534Ff8c2776d45265',
     weth: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
-    creationBlock: 34491144,
+    creationBlock: 40237257,
   },
   // base goerli
   [84531]: {
@@ -95,21 +95,29 @@ const CHAIN_CONFIGS: { [key: number]: ChainConfig } = {
   },
   // base mainnet
   [8453]: {
-    router: '0xeC8B0F7Ffe3ae75d7FfAb09429e3675bb63503e4',
+    router: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD',
     weth: '0x4200000000000000000000000000000000000006',
-    creationBlock: 3229053,
+    creationBlock: 9107268,
   },
-  // canxium mainnet [temp]
+  [81457]: {
+    router: '0x643770E279d5D0733F21d6DC03A8efbABf3255B4',
+    weth: '0x4300000000000000000000000000000000000004',
+    creationBlock: 1116444,
+  },
+  [7777777]: {
+    router: '0x2986d9721A49838ab4297b695858aF7F17f38014',
+    weth: '0x4200000000000000000000000000000000000006',
+    creationBlock: 11832155,
+  },
+  [324]: {
+    router: '0x28731BCC616B5f51dD52CF2e4dF0E78dD1136C06',
+    weth: '0x5aea5775959fbc2557cc8789bc1bf90a239d9a91',
+    creationBlock: 12640979,
+  },
   [3003]: {
     router: '0x62E3E7b23Ed9b765d69D5602Ed3d9BE8E6C96164',
     weth: '0xA3A18968b3a5f5bd0872C58B1bC59481E4496d67',
     creationBlock: 1891743,
-  },
-  // canxium testnet [cerium]
-  [30103]: {
-    router: '0x3b5eD885e81Fd46281ED8b6E6691c32a8FA37018',
-    weth: '0x620969CB5486D4E9E3884E5106EfB4f7d31a76A8', // wrap native coin cau on canxium
-    creationBlock: 381131,
   },
 }
 
@@ -135,6 +143,7 @@ export const PERMIT2_ADDRESS = '0x000000000022D473030F116dDEE9F6B43aC78BA3'
 
 export const CONTRACT_BALANCE = BigNumber.from(2).pow(255)
 export const ETH_ADDRESS = '0x0000000000000000000000000000000000000000'
+export const E_ETH_ADDRESS = '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 export const MAX_UINT256 = BigNumber.from(2).pow(256).sub(1)
 export const MAX_UINT160 = BigNumber.from(2).pow(160).sub(1)

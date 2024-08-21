@@ -16,6 +16,23 @@ var sdkCore = require('@uniswap/sdk-core');
 require('jsbi');
 require('bignumber.js');
 
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, "prototype", {
+    writable: false
+  });
+  return Constructor;
+}
 function _extends() {
   _extends = Object.assign ? Object.assign.bind() : function (target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -104,12 +121,6 @@ var NFTTrade = function NFTTrade(market, orders) {
 })(exports.TokenType || (exports.TokenType = {}));
 
 var _ABI_DEFINITION;
-/**
- * CommandTypes
- * @description Flags that modify a command's execution
- * @enum {number}
- */
-var CommandType;
 (function (CommandType) {
   CommandType[CommandType["V3_SWAP_EXACT_IN"] = 0] = "V3_SWAP_EXACT_IN";
   CommandType[CommandType["V3_SWAP_EXACT_OUT"] = 1] = "V3_SWAP_EXACT_OUT";
@@ -144,14 +155,14 @@ var CommandType;
   CommandType[CommandType["SEAPORT_V1_4"] = 32] = "SEAPORT_V1_4";
   CommandType[CommandType["EXECUTE_SUB_PLAN"] = 33] = "EXECUTE_SUB_PLAN";
   CommandType[CommandType["APPROVE_ERC20"] = 34] = "APPROVE_ERC20";
-})(CommandType || (CommandType = {}));
+})(exports.CommandType || (exports.CommandType = {}));
 var ALLOW_REVERT_FLAG = 0x80;
-var REVERTIBLE_COMMANDS = /*#__PURE__*/new Set([CommandType.SEAPORT_V1_5, CommandType.SEAPORT_V1_4, CommandType.NFTX, CommandType.LOOKS_RARE_V2, CommandType.X2Y2_721, CommandType.X2Y2_1155, CommandType.FOUNDATION, CommandType.SUDOSWAP, CommandType.NFT20, CommandType.EXECUTE_SUB_PLAN, CommandType.CRYPTOPUNKS, CommandType.ELEMENT_MARKET]);
+var REVERTIBLE_COMMANDS = /*#__PURE__*/new Set([exports.CommandType.SEAPORT_V1_5, exports.CommandType.SEAPORT_V1_4, exports.CommandType.NFTX, exports.CommandType.LOOKS_RARE_V2, exports.CommandType.X2Y2_721, exports.CommandType.X2Y2_1155, exports.CommandType.FOUNDATION, exports.CommandType.SUDOSWAP, exports.CommandType.NFT20, exports.CommandType.EXECUTE_SUB_PLAN, exports.CommandType.CRYPTOPUNKS, exports.CommandType.ELEMENT_MARKET]);
 var PERMIT_STRUCT = '((address token,uint160 amount,uint48 expiration,uint48 nonce) details,address spender,uint256 sigDeadline)';
 var PERMIT_BATCH_STRUCT = '((address token,uint160 amount,uint48 expiration,uint48 nonce)[] details,address spender,uint256 sigDeadline)';
 var PERMIT2_TRANSFER_FROM_STRUCT = '(address from,address to,uint160 amount,address token)';
 var PERMIT2_TRANSFER_FROM_BATCH_STRUCT = PERMIT2_TRANSFER_FROM_STRUCT + '[]';
-var ABI_DEFINITION = (_ABI_DEFINITION = {}, _ABI_DEFINITION[CommandType.EXECUTE_SUB_PLAN] = ['bytes', 'bytes[]'], _ABI_DEFINITION[CommandType.PERMIT2_PERMIT] = [PERMIT_STRUCT, 'bytes'], _ABI_DEFINITION[CommandType.PERMIT2_PERMIT_BATCH] = [PERMIT_BATCH_STRUCT, 'bytes'], _ABI_DEFINITION[CommandType.PERMIT2_TRANSFER_FROM] = ['address', 'address', 'uint160'], _ABI_DEFINITION[CommandType.PERMIT2_TRANSFER_FROM_BATCH] = [PERMIT2_TRANSFER_FROM_BATCH_STRUCT], _ABI_DEFINITION[CommandType.V3_SWAP_EXACT_IN] = ['address', 'uint256', 'uint256', 'bytes', 'bool'], _ABI_DEFINITION[CommandType.V3_SWAP_EXACT_OUT] = ['address', 'uint256', 'uint256', 'bytes', 'bool'], _ABI_DEFINITION[CommandType.V2_SWAP_EXACT_IN] = ['address', 'uint256', 'uint256', 'address[]', 'bool'], _ABI_DEFINITION[CommandType.V2_SWAP_EXACT_OUT] = ['address', 'uint256', 'uint256', 'address[]', 'bool'], _ABI_DEFINITION[CommandType.WRAP_ETH] = ['address', 'uint256'], _ABI_DEFINITION[CommandType.UNWRAP_WETH] = ['address', 'uint256'], _ABI_DEFINITION[CommandType.SWEEP] = ['address', 'address', 'uint256'], _ABI_DEFINITION[CommandType.SWEEP_ERC721] = ['address', 'address', 'uint256'], _ABI_DEFINITION[CommandType.SWEEP_ERC1155] = ['address', 'address', 'uint256', 'uint256'], _ABI_DEFINITION[CommandType.TRANSFER] = ['address', 'address', 'uint256'], _ABI_DEFINITION[CommandType.PAY_PORTION] = ['address', 'address', 'uint256'], _ABI_DEFINITION[CommandType.BALANCE_CHECK_ERC20] = ['address', 'address', 'uint256'], _ABI_DEFINITION[CommandType.OWNER_CHECK_721] = ['address', 'address', 'uint256'], _ABI_DEFINITION[CommandType.OWNER_CHECK_1155] = ['address', 'address', 'uint256', 'uint256'], _ABI_DEFINITION[CommandType.APPROVE_ERC20] = ['address', 'uint256'], _ABI_DEFINITION[CommandType.SEAPORT_V1_5] = ['uint256', 'bytes'], _ABI_DEFINITION[CommandType.SEAPORT_V1_4] = ['uint256', 'bytes'], _ABI_DEFINITION[CommandType.NFTX] = ['uint256', 'bytes'], _ABI_DEFINITION[CommandType.LOOKS_RARE_V2] = ['uint256', 'bytes'], _ABI_DEFINITION[CommandType.X2Y2_721] = ['uint256', 'bytes', 'address', 'address', 'uint256'], _ABI_DEFINITION[CommandType.X2Y2_1155] = ['uint256', 'bytes', 'address', 'address', 'uint256', 'uint256'], _ABI_DEFINITION[CommandType.FOUNDATION] = ['uint256', 'bytes', 'address', 'address', 'uint256'], _ABI_DEFINITION[CommandType.SUDOSWAP] = ['uint256', 'bytes'], _ABI_DEFINITION[CommandType.NFT20] = ['uint256', 'bytes'], _ABI_DEFINITION[CommandType.CRYPTOPUNKS] = ['uint256', 'address', 'uint256'], _ABI_DEFINITION[CommandType.ELEMENT_MARKET] = ['uint256', 'bytes'], _ABI_DEFINITION);
+var ABI_DEFINITION = (_ABI_DEFINITION = {}, _ABI_DEFINITION[exports.CommandType.EXECUTE_SUB_PLAN] = ['bytes', 'bytes[]'], _ABI_DEFINITION[exports.CommandType.PERMIT2_PERMIT] = [PERMIT_STRUCT, 'bytes'], _ABI_DEFINITION[exports.CommandType.PERMIT2_PERMIT_BATCH] = [PERMIT_BATCH_STRUCT, 'bytes'], _ABI_DEFINITION[exports.CommandType.PERMIT2_TRANSFER_FROM] = ['address', 'address', 'uint160'], _ABI_DEFINITION[exports.CommandType.PERMIT2_TRANSFER_FROM_BATCH] = [PERMIT2_TRANSFER_FROM_BATCH_STRUCT], _ABI_DEFINITION[exports.CommandType.V3_SWAP_EXACT_IN] = ['address', 'uint256', 'uint256', 'bytes', 'bool'], _ABI_DEFINITION[exports.CommandType.V3_SWAP_EXACT_OUT] = ['address', 'uint256', 'uint256', 'bytes', 'bool'], _ABI_DEFINITION[exports.CommandType.V2_SWAP_EXACT_IN] = ['address', 'uint256', 'uint256', 'address[]', 'bool'], _ABI_DEFINITION[exports.CommandType.V2_SWAP_EXACT_OUT] = ['address', 'uint256', 'uint256', 'address[]', 'bool'], _ABI_DEFINITION[exports.CommandType.WRAP_ETH] = ['address', 'uint256'], _ABI_DEFINITION[exports.CommandType.UNWRAP_WETH] = ['address', 'uint256'], _ABI_DEFINITION[exports.CommandType.SWEEP] = ['address', 'address', 'uint256'], _ABI_DEFINITION[exports.CommandType.SWEEP_ERC721] = ['address', 'address', 'uint256'], _ABI_DEFINITION[exports.CommandType.SWEEP_ERC1155] = ['address', 'address', 'uint256', 'uint256'], _ABI_DEFINITION[exports.CommandType.TRANSFER] = ['address', 'address', 'uint256'], _ABI_DEFINITION[exports.CommandType.PAY_PORTION] = ['address', 'address', 'uint256'], _ABI_DEFINITION[exports.CommandType.BALANCE_CHECK_ERC20] = ['address', 'address', 'uint256'], _ABI_DEFINITION[exports.CommandType.OWNER_CHECK_721] = ['address', 'address', 'uint256'], _ABI_DEFINITION[exports.CommandType.OWNER_CHECK_1155] = ['address', 'address', 'uint256', 'uint256'], _ABI_DEFINITION[exports.CommandType.APPROVE_ERC20] = ['address', 'uint256'], _ABI_DEFINITION[exports.CommandType.SEAPORT_V1_5] = ['uint256', 'bytes'], _ABI_DEFINITION[exports.CommandType.SEAPORT_V1_4] = ['uint256', 'bytes'], _ABI_DEFINITION[exports.CommandType.NFTX] = ['uint256', 'bytes'], _ABI_DEFINITION[exports.CommandType.LOOKS_RARE_V2] = ['uint256', 'bytes'], _ABI_DEFINITION[exports.CommandType.X2Y2_721] = ['uint256', 'bytes', 'address', 'address', 'uint256'], _ABI_DEFINITION[exports.CommandType.X2Y2_1155] = ['uint256', 'bytes', 'address', 'address', 'uint256', 'uint256'], _ABI_DEFINITION[exports.CommandType.FOUNDATION] = ['uint256', 'bytes', 'address', 'address', 'uint256'], _ABI_DEFINITION[exports.CommandType.SUDOSWAP] = ['uint256', 'bytes'], _ABI_DEFINITION[exports.CommandType.NFT20] = ['uint256', 'bytes'], _ABI_DEFINITION[exports.CommandType.CRYPTOPUNKS] = ['uint256', 'address', 'uint256'], _ABI_DEFINITION[exports.CommandType.ELEMENT_MARKET] = ['uint256', 'bytes'], _ABI_DEFINITION);
 var RoutePlanner = /*#__PURE__*/function () {
   function RoutePlanner() {
     this.commands = '0x';
@@ -159,7 +170,7 @@ var RoutePlanner = /*#__PURE__*/function () {
   }
   var _proto = RoutePlanner.prototype;
   _proto.addSubPlan = function addSubPlan(subplan) {
-    this.addCommand(CommandType.EXECUTE_SUB_PLAN, [subplan.commands, subplan.inputs], true);
+    this.addCommand(exports.CommandType.EXECUTE_SUB_PLAN, [subplan.commands, subplan.inputs], true);
   };
   _proto.addCommand = function addCommand(type, parameters, allowRevert) {
     if (allowRevert === void 0) {
@@ -200,61 +211,69 @@ var CHAIN_CONFIGS = (_CHAIN_CONFIGS = {}, _CHAIN_CONFIGS[1] = {
   weth: '0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14',
   creationBlock: 3543575
 }, _CHAIN_CONFIGS[137] = {
-  router: '0x643770E279d5D0733F21d6DC03A8efbABf3255B4',
+  router: '0xec7BE89e9d109e7e3Fec59c222CF297125FEFda2',
   weth: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
-  creationBlock: 46866777
+  creationBlock: 52210153
 }, _CHAIN_CONFIGS[80001] = {
   router: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD',
   weth: '0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889',
   creationBlock: 35176052
 }, _CHAIN_CONFIGS[10] = {
-  router: '0xeC8B0F7Ffe3ae75d7FfAb09429e3675bb63503e4',
+  router: '0xCb1355ff08Ab38bBCE60111F1bb2B784bE25D7e8',
   weth: '0x4200000000000000000000000000000000000006',
-  creationBlock: 108825869
+  creationBlock: 114702266
 }, _CHAIN_CONFIGS[420] = {
   router: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD',
   weth: '0x4200000000000000000000000000000000000006',
   creationBlock: 8887728
 }, _CHAIN_CONFIGS[42161] = {
-  router: '0xeC8B0F7Ffe3ae75d7FfAb09429e3675bb63503e4',
+  router: '0x5E325eDA8064b456f4781070C0738d849c824258',
   weth: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
-  creationBlock: 125861718
+  creationBlock: 169472836
 }, _CHAIN_CONFIGS[421613] = {
   router: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD',
   weth: '0xe39Ab88f8A4777030A534146A9Ca3B52bd5D43A3',
   creationBlock: 18815277
 }, _CHAIN_CONFIGS[42220] = {
-  router: '0x88a3ED7F21A3fCF6adb86b6F878C5B7a02D20e9b',
+  router: '0x643770e279d5d0733f21d6dc03a8efbabf3255b4',
   weth: WETH_NOT_SUPPORTED_ON_CHAIN,
-  creationBlock: 21116361
+  creationBlock: 21407637
 }, _CHAIN_CONFIGS[44787] = {
   router: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD',
   weth: WETH_NOT_SUPPORTED_ON_CHAIN,
   creationBlock: 17566658
 }, _CHAIN_CONFIGS[56] = {
-  router: '0xeC8B0F7Ffe3ae75d7FfAb09429e3675bb63503e4',
+  router: '0x4Dae2f939ACf50408e13d58534Ff8c2776d45265',
   weth: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
-  creationBlock: 31254967
+  creationBlock: 35160263
 }, _CHAIN_CONFIGS[43114] = {
-  router: '0x82635AF6146972cD6601161c4472ffe97237D292',
+  router: '0x4Dae2f939ACf50408e13d58534Ff8c2776d45265',
   weth: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
-  creationBlock: 34491144
+  creationBlock: 40237257
 }, _CHAIN_CONFIGS[84531] = {
   router: '0xd0872d928672ae2ff74bdb2f5130ac12229cafaf',
   weth: '0x4200000000000000000000000000000000000006',
   creationBlock: 6915289
 }, _CHAIN_CONFIGS[8453] = {
-  router: '0xeC8B0F7Ffe3ae75d7FfAb09429e3675bb63503e4',
+  router: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD',
   weth: '0x4200000000000000000000000000000000000006',
-  creationBlock: 3229053
+  creationBlock: 9107268
+}, _CHAIN_CONFIGS[81457] = {
+  router: '0x643770E279d5D0733F21d6DC03A8efbABf3255B4',
+  weth: '0x4300000000000000000000000000000000000004',
+  creationBlock: 1116444
+}, _CHAIN_CONFIGS[7777777] = {
+  router: '0x2986d9721A49838ab4297b695858aF7F17f38014',
+  weth: '0x4200000000000000000000000000000000000006',
+  creationBlock: 11832155
+}, _CHAIN_CONFIGS[324] = {
+  router: '0x28731BCC616B5f51dD52CF2e4dF0E78dD1136C06',
+  weth: '0x5aea5775959fbc2557cc8789bc1bf90a239d9a91',
+  creationBlock: 12640979
 }, _CHAIN_CONFIGS[3003] = {
   router: '0x62E3E7b23Ed9b765d69D5602Ed3d9BE8E6C96164',
   weth: '0xA3A18968b3a5f5bd0872C58B1bC59481E4496d67',
   creationBlock: 1891743
-}, _CHAIN_CONFIGS[30103] = {
-  router: '0x3b5eD885e81Fd46281ED8b6E6691c32a8FA37018',
-  weth: '0x620969CB5486D4E9E3884E5106EfB4f7d31a76A8',
-  creationBlock: 381131
 }, _CHAIN_CONFIGS);
 var UNIVERSAL_ROUTER_ADDRESS = function UNIVERSAL_ROUTER_ADDRESS(chainId) {
   if (!(chainId in CHAIN_CONFIGS)) throw new Error("Universal Router not deployed on chain " + chainId);
@@ -272,6 +291,7 @@ var WETH_ADDRESS = function WETH_ADDRESS(chainId) {
 var PERMIT2_ADDRESS = '0x000000000022D473030F116dDEE9F6B43aC78BA3';
 var CONTRACT_BALANCE = /*#__PURE__*/ethers.BigNumber.from(2).pow(255);
 var ETH_ADDRESS = '0x0000000000000000000000000000000000000000';
+var E_ETH_ADDRESS = '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee';
 var ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 var SENDER_AS_RECIPIENT = '0x0000000000000000000000000000000000000001';
 var ROUTER_AS_RECIPIENT = '0x0000000000000000000000000000000000000002';
@@ -290,17 +310,16 @@ var UniswapTrade = /*#__PURE__*/function () {
     this.trade = trade;
     this.options = options;
     this.tradeType = exports.RouterTradeType.UniswapTrade;
+    if (!!options.fee && !!options.flatFee) throw new Error('Only one fee option permitted');
+    if (this.inputRequiresWrap) this.payerIsUser = false;else if (this.options.useRouterBalance) this.payerIsUser = false;else this.payerIsUser = true;
   }
   var _proto = UniswapTrade.prototype;
   _proto.encode = function encode(planner, _config) {
     var _this$options$recipie;
-    var payerIsUser = true;
     // If the input currency is the native currency, we need to wrap it with the router as the recipient
-    if (this.trade.inputAmount.currency.isNative) {
+    if (this.inputRequiresWrap) {
       // TODO: optimize if only one v2 pool we can directly send this to the pool
-      planner.addCommand(CommandType.WRAP_ETH, [ROUTER_AS_RECIPIENT, this.trade.maximumAmountIn(this.options.slippageTolerance).quotient.toString()]);
-      // since WETH is now owned by the router, the router pays for inputs
-      payerIsUser = false;
+      planner.addCommand(exports.CommandType.WRAP_ETH, [ROUTER_AS_RECIPIENT, this.trade.maximumAmountIn(this.options.slippageTolerance).quotient.toString()]);
     }
     // The overall recipient at the end of the trade, SENDER_AS_RECIPIENT uses the msg.sender
     this.options.recipient = (_this$options$recipie = this.options.recipient) != null ? _this$options$recipie : SENDER_AS_RECIPIENT;
@@ -310,19 +329,18 @@ var UniswapTrade = /*#__PURE__*/function () {
     //      in that the reversion probability is lower
     var performAggregatedSlippageCheck = this.trade.tradeType === sdkCore.TradeType.EXACT_INPUT && this.trade.routes.length > 2;
     var outputIsNative = this.trade.outputAmount.currency.isNative;
-    var inputIsNative = this.trade.inputAmount.currency.isNative;
-    var routerMustCustody = performAggregatedSlippageCheck || outputIsNative || !!this.options.fee;
+    var routerMustCustody = performAggregatedSlippageCheck || outputIsNative || hasFeeOption(this.options);
     for (var _iterator = _createForOfIteratorHelperLoose(this.trade.swaps), _step; !(_step = _iterator()).done;) {
       var swap = _step.value;
       switch (swap.route.protocol) {
         case routerSdk.Protocol.V2:
-          addV2Swap(planner, swap, this.trade.tradeType, this.options, payerIsUser, routerMustCustody);
+          addV2Swap(planner, swap, this.trade.tradeType, this.options, this.payerIsUser, routerMustCustody);
           break;
         case routerSdk.Protocol.V3:
-          addV3Swap(planner, swap, this.trade.tradeType, this.options, payerIsUser, routerMustCustody);
+          addV3Swap(planner, swap, this.trade.tradeType, this.options, this.payerIsUser, routerMustCustody);
           break;
         case routerSdk.Protocol.MIXED:
-          addMixedSwap(planner, swap, this.trade.tradeType, this.options, payerIsUser, routerMustCustody);
+          addMixedSwap(planner, swap, this.trade.tradeType, this.options, this.payerIsUser, routerMustCustody);
           break;
         default:
           throw new Error('UNSUPPORTED_TRADE_PROTOCOL');
@@ -335,27 +353,46 @@ var UniswapTrade = /*#__PURE__*/function () {
       // In the case where ETH is the output currency, the fee is taken in WETH (for gas reasons)
       if (!!this.options.fee) {
         var feeBips = encodeFeeBips(this.options.fee.fee);
-        planner.addCommand(CommandType.PAY_PORTION, [this.trade.outputAmount.currency.wrapped.address, this.options.fee.recipient, feeBips]);
+        planner.addCommand(exports.CommandType.PAY_PORTION, [this.trade.outputAmount.currency.wrapped.address, this.options.fee.recipient, feeBips]);
         // If the trade is exact output, and a fee was taken, we must adjust the amount out to be the amount after the fee
         // Otherwise we continue as expected with the trade's normal expected output
         if (this.trade.tradeType === sdkCore.TradeType.EXACT_OUTPUT) {
           minimumAmountOut = minimumAmountOut.sub(minimumAmountOut.mul(feeBips).div(10000));
         }
       }
+      // If there is a flat fee, that absolute amount is sent to the fee recipient
+      // In the case where ETH is the output currency, the fee is taken in WETH (for gas reasons)
+      if (!!this.options.flatFee) {
+        var feeAmount = this.options.flatFee.amount;
+        if (minimumAmountOut.lt(feeAmount)) throw new Error('Flat fee amount greater than minimumAmountOut');
+        planner.addCommand(exports.CommandType.TRANSFER, [this.trade.outputAmount.currency.wrapped.address, this.options.flatFee.recipient, feeAmount]);
+        // If the trade is exact output, and a fee was taken, we must adjust the amount out to be the amount after the fee
+        // Otherwise we continue as expected with the trade's normal expected output
+        if (this.trade.tradeType === sdkCore.TradeType.EXACT_OUTPUT) {
+          minimumAmountOut = minimumAmountOut.sub(feeAmount);
+        }
+      }
       // The remaining tokens that need to be sent to the user after the fee is taken will be caught
       // by this if-else clause.
       if (outputIsNative) {
-        planner.addCommand(CommandType.UNWRAP_WETH, [this.options.recipient, minimumAmountOut]);
+        planner.addCommand(exports.CommandType.UNWRAP_WETH, [this.options.recipient, minimumAmountOut]);
       } else {
-        planner.addCommand(CommandType.SWEEP, [this.trade.outputAmount.currency.wrapped.address, this.options.recipient, minimumAmountOut]);
+        planner.addCommand(exports.CommandType.SWEEP, [this.trade.outputAmount.currency.wrapped.address, this.options.recipient, minimumAmountOut]);
       }
     }
-    if (inputIsNative && (this.trade.tradeType === sdkCore.TradeType.EXACT_OUTPUT || riskOfPartialFill(this.trade))) {
+    if (this.inputRequiresWrap && (this.trade.tradeType === sdkCore.TradeType.EXACT_OUTPUT || riskOfPartialFill(this.trade))) {
       // for exactOutput swaps that take native currency as input
       // we need to send back the change to the user
-      planner.addCommand(CommandType.UNWRAP_WETH, [this.options.recipient, 0]);
+      planner.addCommand(exports.CommandType.UNWRAP_WETH, [this.options.recipient, 0]);
     }
+    if (this.options.safeMode) planner.addCommand(exports.CommandType.SWEEP, [ETH_ADDRESS, this.options.recipient, 0]);
   };
+  _createClass(UniswapTrade, [{
+    key: "inputRequiresWrap",
+    get: function get() {
+      return this.trade.inputAmount.currency.isNative;
+    }
+  }]);
   return UniswapTrade;
 }();
 // encode a uniswap v2 swap
@@ -365,14 +402,14 @@ function addV2Swap(planner, _ref, tradeType, options, payerIsUser, routerMustCus
     outputAmount = _ref.outputAmount;
   var trade = new v2Sdk.Trade(route, tradeType == sdkCore.TradeType.EXACT_INPUT ? inputAmount : outputAmount, tradeType);
   if (tradeType == sdkCore.TradeType.EXACT_INPUT) {
-    planner.addCommand(CommandType.V2_SWAP_EXACT_IN, [
+    planner.addCommand(exports.CommandType.V2_SWAP_EXACT_IN, [
     // if native, we have to unwrap so keep in the router for now
-    routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient, trade.maximumAmountIn(options.slippageTolerance).quotient.toString(), trade.minimumAmountOut(options.slippageTolerance).quotient.toString(), route.path.map(function (pool) {
-      return pool.address;
+    routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient, trade.maximumAmountIn(options.slippageTolerance).quotient.toString(), trade.minimumAmountOut(options.slippageTolerance).quotient.toString(), route.path.map(function (token) {
+      return token.wrapped.address;
     }), payerIsUser]);
   } else if (tradeType == sdkCore.TradeType.EXACT_OUTPUT) {
-    planner.addCommand(CommandType.V2_SWAP_EXACT_OUT, [routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient, trade.minimumAmountOut(options.slippageTolerance).quotient.toString(), trade.maximumAmountIn(options.slippageTolerance).quotient.toString(), route.path.map(function (pool) {
-      return pool.address;
+    planner.addCommand(exports.CommandType.V2_SWAP_EXACT_OUT, [routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient, trade.minimumAmountOut(options.slippageTolerance).quotient.toString(), trade.maximumAmountIn(options.slippageTolerance).quotient.toString(), route.path.map(function (token) {
+      return token.wrapped.address;
     }), payerIsUser]);
   }
 }
@@ -389,9 +426,9 @@ function addV3Swap(planner, _ref2, tradeType, options, payerIsUser, routerMustCu
   });
   var path = v3Sdk.encodeRouteToPath(route, trade.tradeType === sdkCore.TradeType.EXACT_OUTPUT);
   if (tradeType == sdkCore.TradeType.EXACT_INPUT) {
-    planner.addCommand(CommandType.V3_SWAP_EXACT_IN, [routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient, trade.maximumAmountIn(options.slippageTolerance).quotient.toString(), trade.minimumAmountOut(options.slippageTolerance).quotient.toString(), path, payerIsUser]);
+    planner.addCommand(exports.CommandType.V3_SWAP_EXACT_IN, [routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient, trade.maximumAmountIn(options.slippageTolerance).quotient.toString(), trade.minimumAmountOut(options.slippageTolerance).quotient.toString(), path, payerIsUser]);
   } else if (tradeType == sdkCore.TradeType.EXACT_OUTPUT) {
-    planner.addCommand(CommandType.V3_SWAP_EXACT_OUT, [routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient, trade.minimumAmountOut(options.slippageTolerance).quotient.toString(), trade.maximumAmountIn(options.slippageTolerance).quotient.toString(), path, payerIsUser]);
+    planner.addCommand(exports.CommandType.V3_SWAP_EXACT_OUT, [routerMustCustody ? ROUTER_AS_RECIPIENT : options.recipient, trade.minimumAmountOut(options.slippageTolerance).quotient.toString(), trade.maximumAmountIn(options.slippageTolerance).quotient.toString(), path, payerIsUser]);
   }
 }
 // encode a mixed route swap, i.e. including both v2 and v3 pools
@@ -433,7 +470,7 @@ function addMixedSwap(planner, swap, tradeType, options, payerIsUser, routerMust
     var newRouteOriginal = new routerSdk.MixedRouteSDK([].concat(section), section[0].token0.equals(inputToken) ? section[0].token0 : section[0].token1, outputToken);
     var newRoute = new routerSdk.MixedRoute(newRouteOriginal);
     /// Previous output is now input
-    inputToken = outputToken;
+    inputToken = outputToken.wrapped;
     var mixedRouteIsAllV3 = function mixedRouteIsAllV3(route) {
       return route.pools.every(function (pool) {
         return pool instanceof v3Sdk.Pool;
@@ -441,13 +478,13 @@ function addMixedSwap(planner, swap, tradeType, options, payerIsUser, routerMust
     };
     if (mixedRouteIsAllV3(newRoute)) {
       var path = routerSdk.encodeMixedRouteToPath(newRoute);
-      planner.addCommand(CommandType.V3_SWAP_EXACT_IN, [
+      planner.addCommand(exports.CommandType.V3_SWAP_EXACT_IN, [
       // if not last section: send tokens directly to the first v2 pair of the next section
       // note: because of the partitioning function we can be sure that the next section is v2
       isLastSectionInRoute(i) ? tradeRecipient : sections[i + 1][0].liquidityToken.address, i == 0 ? amountIn : CONTRACT_BALANCE, !isLastSectionInRoute(i) ? 0 : amountOut, path, payerIsUser && i === 0]);
     } else {
-      planner.addCommand(CommandType.V2_SWAP_EXACT_IN, [isLastSectionInRoute(i) ? tradeRecipient : ROUTER_AS_RECIPIENT, i === 0 ? amountIn : CONTRACT_BALANCE, !isLastSectionInRoute(i) ? 0 : amountOut, newRoute.path.map(function (pool) {
-        return pool.address;
+      planner.addCommand(exports.CommandType.V2_SWAP_EXACT_IN, [isLastSectionInRoute(i) ? tradeRecipient : ROUTER_AS_RECIPIENT, i === 0 ? amountIn : CONTRACT_BALANCE, !isLastSectionInRoute(i) ? 0 : amountOut, newRoute.path.map(function (token) {
+        return token.wrapped.address;
       }), payerIsUser && i === 0]);
     }
   }
@@ -455,6 +492,9 @@ function addMixedSwap(planner, swap, tradeType, options, payerIsUser, routerMust
 // if price impact is very high, there's a chance of hitting max/min prices resulting in a partial fill of the swap
 function riskOfPartialFill(trade) {
   return trade.priceImpact.greaterThan(REFUND_ETH_PRICE_IMPACT_THRESHOLD);
+}
+function hasFeeOption(swapOptions) {
+  return !!swapOptions.fee || !!swapOptions.flatFee;
 }
 
 var SIGNATURE_LENGTH = 65;
@@ -467,7 +507,7 @@ function encodePermit(planner, permit2) {
     // sanitizes signature to cover edge cases of malformed EIP-2098 sigs and v used as recovery id
     signature = ethers.ethers.utils.joinSignature(ethers.ethers.utils.splitSignature(permit2.signature));
   }
-  planner.addCommand(CommandType.PERMIT2_PERMIT, [permit2, signature]);
+  planner.addCommand(exports.CommandType.PERMIT2_PERMIT, [permit2, signature]);
 }
 // Handles the encoding of commands needed to gather input tokens for a trade
 // Approval: The router approving another address to take tokens.
@@ -481,14 +521,14 @@ function encodeInputTokenOptions(planner, options) {
   if (!!options.permit2TransferFrom && !!options.permit2Permit) !(options.permit2TransferFrom.token === options.permit2Permit.details.token) ?  invariant(false, "inconsistent token")  : void 0;
   // if an options.approval is required, add it
   if (!!options.approval) {
-    planner.addCommand(CommandType.APPROVE_ERC20, [options.approval.token, mapApprovalProtocol(options.approval.protocol)]);
+    planner.addCommand(exports.CommandType.APPROVE_ERC20, [options.approval.token, mapApprovalProtocol(options.approval.protocol)]);
   }
   // if this order has a options.permit2Permit, encode it
   if (!!options.permit2Permit) {
     encodePermit(planner, options.permit2Permit);
   }
   if (!!options.permit2TransferFrom) {
-    planner.addCommand(CommandType.PERMIT2_TRANSFER_FROM, [options.permit2TransferFrom.token, options.permit2TransferFrom.recipient ? options.permit2TransferFrom.recipient : ROUTER_AS_RECIPIENT, options.permit2TransferFrom.amount]);
+    planner.addCommand(exports.CommandType.PERMIT2_TRANSFER_FROM, [options.permit2TransferFrom.token, options.permit2TransferFrom.recipient ? options.permit2TransferFrom.recipient : ROUTER_AS_RECIPIENT, options.permit2TransferFrom.amount]);
   }
 }
 function mapApprovalProtocol(protocolAddress) {
@@ -593,7 +633,7 @@ var SwapRouter = /*#__PURE__*/function () {
     // or NFT trades with potential slippage (i.e. sudo).
     // Note: NFTXV2 sends excess ETH to the caller (router), not the specified recipient
     nftInputTokens.forEach(function (inputToken) {
-      planner.addCommand(CommandType.SWEEP, [inputToken, SENDER_AS_RECIPIENT, 0]);
+      planner.addCommand(exports.CommandType.SWEEP, [inputToken, SENDER_AS_RECIPIENT, 0]);
     });
     return SwapRouter.encodePlan(planner, transactionValue, config);
   }
@@ -617,7 +657,7 @@ var SwapRouter = /*#__PURE__*/function () {
       });
       totalPrice = totalPrice.add(trade.getTotalPrice());
     }
-    planner.addCommand(CommandType.SWEEP, [ETH_ADDRESS, SENDER_AS_RECIPIENT, 0]);
+    planner.addCommand(exports.CommandType.SWEEP, [ETH_ADDRESS, SENDER_AS_RECIPIENT, 0]);
     return SwapRouter.encodePlan(planner, totalPrice, config);
   }
   /**
@@ -676,7 +716,7 @@ var CryptopunkTrade = /*#__PURE__*/function (_NFTTrade) {
   _proto.encode = function encode(planner, config) {
     for (var _iterator = _createForOfIteratorHelperLoose(this.orders), _step; !(_step = _iterator()).done;) {
       var item = _step.value;
-      planner.addCommand(CommandType.CRYPTOPUNKS, [item.tokenId, item.recipient, item.value], config.allowRevert);
+      planner.addCommand(exports.CommandType.CRYPTOPUNKS, [item.tokenId, item.recipient, item.value], config.allowRevert);
     }
   };
   _proto.getBuyItems = function getBuyItems() {
@@ -2335,7 +2375,7 @@ var FoundationTrade = /*#__PURE__*/function (_NFTTrade) {
     for (var _iterator = _createForOfIteratorHelperLoose(this.orders), _step; !(_step = _iterator()).done;) {
       var item = _step.value;
       var calldata = FoundationTrade.INTERFACE.encodeFunctionData('buyV2', [item.tokenAddress, item.tokenId, item.price, item.referrer]);
-      planner.addCommand(CommandType.FOUNDATION, [item.price, calldata, item.recipient, item.tokenAddress, item.tokenId], config.allowRevert);
+      planner.addCommand(exports.CommandType.FOUNDATION, [item.price, calldata, item.recipient, item.tokenAddress, item.tokenId], config.allowRevert);
     }
   };
   _proto.getBuyItems = function getBuyItems() {
@@ -4381,7 +4421,7 @@ var LooksRareV2Trade = /*#__PURE__*/function (_NFTTrade) {
     } else {
       calldata = LooksRareV2Trade.INTERFACE.encodeFunctionData('executeMultipleTakerBids', [takerBids, makerOrders, makerSignatures, merkleTrees, ZERO_ADDRESS, false]);
     }
-    planner.addCommand(CommandType.LOOKS_RARE_V2, [totalValue, calldata], config.allowRevert);
+    planner.addCommand(exports.CommandType.LOOKS_RARE_V2, [totalValue, calldata], config.allowRevert);
   };
   _proto.getBuyItems = function getBuyItems() {
     var buyItems = [];
@@ -4709,7 +4749,7 @@ var NFT20Trade = /*#__PURE__*/function (_NFTTrade) {
     for (var _iterator = _createForOfIteratorHelperLoose(this.orders), _step; !(_step = _iterator()).done;) {
       var order = _step.value;
       var calldata = NFT20Trade.INTERFACE.encodeFunctionData('ethForNft', [order.tokenAddress, order.tokenIds, order.tokenAmounts, order.recipient, order.fee, order.isV3]);
-      planner.addCommand(CommandType.NFT20, [order.value, calldata], config.allowRevert);
+      planner.addCommand(exports.CommandType.NFT20, [order.value, calldata], config.allowRevert);
     }
   };
   _proto.getBuyItems = function getBuyItems() {
@@ -5370,7 +5410,7 @@ var NFTXTrade = /*#__PURE__*/function (_NFTTrade) {
     for (var _iterator = _createForOfIteratorHelperLoose(this.orders), _step; !(_step = _iterator()).done;) {
       var order = _step.value;
       var calldata = NFTXTrade.INTERFACE.encodeFunctionData('buyAndRedeem', [order.vaultId, order.tokenIds.length, order.tokenIds, order.swapCalldata, order.recipient]);
-      planner.addCommand(CommandType.NFTX, [order.value, calldata], config.allowRevert);
+      planner.addCommand(exports.CommandType.NFTX, [order.value, calldata], config.allowRevert);
     }
   };
   _proto.getBuyItems = function getBuyItems() {
@@ -8137,10 +8177,10 @@ var SeaportTrade = /*#__PURE__*/function (_NFTTrade) {
     switch (protocolAddress.toLowerCase()) {
       case '0x00000000000000adc04c56bf30ac9d3c0aaf14dc':
         // Seaport v1.5
-        return CommandType.SEAPORT_V1_5;
+        return exports.CommandType.SEAPORT_V1_5;
       case '0x00000000000001ad428e4906ae43d8f9852d0dd6':
         // Seaport v1.4
-        return CommandType.SEAPORT_V1_4;
+        return exports.CommandType.SEAPORT_V1_4;
       default:
         throw new Error('unsupported Seaport address');
     }
@@ -9331,7 +9371,7 @@ var SudoswapTrade = /*#__PURE__*/function (_NFTTrade) {
       var value = order.swaps.reduce(function (prevVal, swap) {
         return prevVal.add(swap.maxCost);
       }, ethers.BigNumber.from(0));
-      planner.addCommand(CommandType.SUDOSWAP, [value, calldata], config.allowRevert);
+      planner.addCommand(exports.CommandType.SUDOSWAP, [value, calldata], config.allowRevert);
     }
   };
   _proto.getBuyItems = function getBuyItems() {
@@ -10484,9 +10524,9 @@ var X2Y2Trade = /*#__PURE__*/function (_NFTTrade) {
       var functionSelector = X2Y2Trade.INTERFACE.getSighash(X2Y2Trade.INTERFACE.getFunction('run'));
       var calldata = functionSelector + item.signedInput.slice(2);
       if (item.tokenType == exports.TokenType.ERC721) {
-        planner.addCommand(CommandType.X2Y2_721, [item.price, calldata, item.recipient, item.tokenAddress, item.tokenId], config.allowRevert);
+        planner.addCommand(exports.CommandType.X2Y2_721, [item.price, calldata, item.recipient, item.tokenAddress, item.tokenId], config.allowRevert);
       } else if (item.tokenType == exports.TokenType.ERC1155) {
-        planner.addCommand(CommandType.X2Y2_1155, [item.price, calldata, item.recipient, item.tokenAddress, item.tokenId, item.tokenAmount], config.allowRevert);
+        planner.addCommand(exports.CommandType.X2Y2_1155, [item.price, calldata, item.recipient, item.tokenAddress, item.tokenId, item.tokenAmount], config.allowRevert);
       }
     }
   };
@@ -10534,10 +10574,129 @@ var UnwrapWETH = /*#__PURE__*/function () {
         amount: this.amount.toString()
       }
     });
-    planner.addCommand(CommandType.UNWRAP_WETH, [ROUTER_AS_RECIPIENT, this.amount]);
+    planner.addCommand(exports.CommandType.UNWRAP_WETH, [ROUTER_AS_RECIPIENT, this.amount]);
   };
   return UnwrapWETH;
 }();
+
+(function (PoolType) {
+  PoolType["V2Pool"] = "v2-pool";
+  PoolType["V3Pool"] = "v3-pool";
+})(exports.PoolType || (exports.PoolType = {}));
+var isNativeCurrency = function isNativeCurrency(address) {
+  return address.toLowerCase() === ETH_ADDRESS.toLowerCase() || address.toLowerCase() === E_ETH_ADDRESS.toLowerCase();
+};
+// Helper class to convert routing-specific quote entities to RouterTrade entities
+// the returned RouterTrade can then be used to build the UniswapTrade entity in this package
+var RouterTradeAdapter = /*#__PURE__*/function () {
+  function RouterTradeAdapter() {}
+  // Generate a RouterTrade using fields from a classic quote response
+  RouterTradeAdapter.fromClassicQuote = function fromClassicQuote(quote) {
+    var route = quote.route,
+      tokenIn = quote.tokenIn,
+      tokenOut = quote.tokenOut;
+    if (!route) throw new Error('Expected route to be present');
+    if (!route.length) throw new Error('Expected there to be at least one route');
+    if (route.some(function (r) {
+      return !r.length;
+    })) throw new Error('Expected all routes to have at least one pool');
+    var firstRoute = route[0];
+    var tokenInData = firstRoute[0].tokenIn;
+    var tokenOutData = firstRoute[firstRoute.length - 1].tokenOut;
+    if (!tokenInData || !tokenOutData) throw new Error('Expected both tokenIn and tokenOut to be present');
+    if (tokenInData.chainId !== tokenOutData.chainId) throw new Error('Expected tokenIn and tokenOut to be have same chainId');
+    var parsedCurrencyIn = RouterTradeAdapter.toCurrency(isNativeCurrency(tokenIn), tokenInData);
+    var parsedCurrencyOut = RouterTradeAdapter.toCurrency(isNativeCurrency(tokenOut), tokenOutData);
+    var typedRoutes = route.map(function (subRoute) {
+      var rawAmountIn = subRoute[0].amountIn;
+      var rawAmountOut = subRoute[subRoute.length - 1].amountOut;
+      if (!rawAmountIn || !rawAmountOut) {
+        throw new Error('Expected both raw amountIn and raw amountOut to be present');
+      }
+      var inputAmount = sdkCore.CurrencyAmount.fromRawAmount(parsedCurrencyIn, rawAmountIn);
+      var outputAmount = sdkCore.CurrencyAmount.fromRawAmount(parsedCurrencyOut, rawAmountOut);
+      var isOnlyV2 = RouterTradeAdapter.isVersionedRoute(exports.PoolType.V2Pool, subRoute);
+      var isOnlyV3 = RouterTradeAdapter.isVersionedRoute(exports.PoolType.V3Pool, subRoute);
+      return {
+        routev3: isOnlyV3 ? new v3Sdk.Route(subRoute.map(RouterTradeAdapter.toPool), parsedCurrencyIn, parsedCurrencyOut) : null,
+        routev2: isOnlyV2 ? new v2Sdk.Route(subRoute.map(RouterTradeAdapter.toPair), parsedCurrencyIn, parsedCurrencyOut) : null,
+        mixedRoute: !isOnlyV3 && !isOnlyV2 ? new routerSdk.MixedRouteSDK(subRoute.map(RouterTradeAdapter.toPoolOrPair), parsedCurrencyIn, parsedCurrencyOut) : null,
+        inputAmount: inputAmount,
+        outputAmount: outputAmount
+      };
+    });
+    return new routerSdk.Trade({
+      v2Routes: typedRoutes.filter(function (route) {
+        return route.routev2;
+      }).map(function (route) {
+        return {
+          routev2: route.routev2,
+          inputAmount: route.inputAmount,
+          outputAmount: route.outputAmount
+        };
+      }),
+      v3Routes: typedRoutes.filter(function (route) {
+        return route.routev3;
+      }).map(function (route) {
+        return {
+          routev3: route.routev3,
+          inputAmount: route.inputAmount,
+          outputAmount: route.outputAmount
+        };
+      }),
+      // TODO: ROUTE-219 - Support v4 trade in universal-router sdk
+      v4Routes: [],
+      mixedRoutes: typedRoutes.filter(function (route) {
+        return route.mixedRoute;
+      }).map(function (route) {
+        return {
+          mixedRoute: route.mixedRoute,
+          inputAmount: route.inputAmount,
+          outputAmount: route.outputAmount
+        };
+      }),
+      tradeType: quote.tradeType
+    });
+  };
+  RouterTradeAdapter.toCurrency = function toCurrency(isNative, token) {
+    if (isNative) {
+      return sdkCore.Ether.onChain(token.chainId);
+    }
+    return this.toToken(token);
+  };
+  RouterTradeAdapter.toToken = function toToken(token) {
+    var chainId = token.chainId,
+      address = token.address,
+      decimals = token.decimals,
+      symbol = token.symbol,
+      buyFeeBps = token.buyFeeBps,
+      sellFeeBps = token.sellFeeBps;
+    return new sdkCore.Token(chainId, address, parseInt(decimals.toString()), symbol, /* name */undefined, false, buyFeeBps ? ethers.BigNumber.from(buyFeeBps) : undefined, sellFeeBps ? ethers.BigNumber.from(sellFeeBps) : undefined);
+  };
+  RouterTradeAdapter.toPool = function toPool(_ref) {
+    var fee = _ref.fee,
+      sqrtRatioX96 = _ref.sqrtRatioX96,
+      liquidity = _ref.liquidity,
+      tickCurrent = _ref.tickCurrent,
+      tokenIn = _ref.tokenIn,
+      tokenOut = _ref.tokenOut;
+    return new v3Sdk.Pool(RouterTradeAdapter.toToken(tokenIn), RouterTradeAdapter.toToken(tokenOut), parseInt(fee), sqrtRatioX96, liquidity, parseInt(tickCurrent));
+  };
+  RouterTradeAdapter.isVersionedRoute = function isVersionedRoute(type, route) {
+    return route.every(function (pool) {
+      return pool.type === type;
+    });
+  };
+  return RouterTradeAdapter;
+}();
+RouterTradeAdapter.toPoolOrPair = function (pool) {
+  return pool.type === exports.PoolType.V3Pool ? RouterTradeAdapter.toPool(pool) : RouterTradeAdapter.toPair(pool);
+};
+RouterTradeAdapter.toPair = function (_ref2) {
+  var reserve0 = _ref2.reserve0,
+    reserve1 = _ref2.reserve1;
+  return new v2Sdk.Pair(sdkCore.CurrencyAmount.fromRawAmount(RouterTradeAdapter.toToken(reserve0.token), reserve0.quotient), sdkCore.CurrencyAmount.fromRawAmount(RouterTradeAdapter.toToken(reserve1.token), reserve1.quotient));
+};
 
 exports.CryptopunkTrade = CryptopunkTrade;
 exports.FoundationTrade = FoundationTrade;
@@ -10547,6 +10706,8 @@ exports.NFTTrade = NFTTrade;
 exports.NFTXTrade = NFTXTrade;
 exports.PERMIT2_ADDRESS = PERMIT2_ADDRESS;
 exports.ROUTER_AS_RECIPIENT = ROUTER_AS_RECIPIENT;
+exports.RoutePlanner = RoutePlanner;
+exports.RouterTradeAdapter = RouterTradeAdapter;
 exports.SeaportTrade = SeaportTrade;
 exports.SudoswapTrade = SudoswapTrade;
 exports.SwapRouter = SwapRouter;
@@ -10556,4 +10717,5 @@ exports.UniswapTrade = UniswapTrade;
 exports.UnwrapWETH = UnwrapWETH;
 exports.WETH_ADDRESS = WETH_ADDRESS;
 exports.X2Y2Trade = X2Y2Trade;
+exports.isNativeCurrency = isNativeCurrency;
 //# sourceMappingURL=universal-router-sdk.cjs.development.js.map

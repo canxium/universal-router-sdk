@@ -5,6 +5,7 @@ export declare const WETH_ADDRESS: (chainId: number) => string;
 export declare const PERMIT2_ADDRESS = "0x000000000022D473030F116dDEE9F6B43aC78BA3";
 export declare const CONTRACT_BALANCE: BigNumber;
 export declare const ETH_ADDRESS = "0x0000000000000000000000000000000000000000";
+export declare const E_ETH_ADDRESS = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
 export declare const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 export declare const MAX_UINT256: BigNumber;
 export declare const MAX_UINT160: BigNumber;
